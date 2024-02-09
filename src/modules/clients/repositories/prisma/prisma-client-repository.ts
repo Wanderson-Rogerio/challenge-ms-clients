@@ -49,7 +49,7 @@ class PrismaClientRepository implements IClientRepository {
     client_id: string,
     data: Prisma.ClientUpdateInput,
   ): Promise<Client | null> {
-    const picture = this.prisma.client.update({
+    const client = await this.prisma.client.update({
       where: {
         id: client_id,
       },
@@ -60,7 +60,7 @@ class PrismaClientRepository implements IClientRepository {
       },
     });
 
-    return picture;
+    return client;
   }
 }
 

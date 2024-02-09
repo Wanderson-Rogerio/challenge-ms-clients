@@ -1,19 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `client` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `client_bank` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE "client_bank" DROP CONSTRAINT "client_bank_client_id_fkey";
-
--- DropTable
-DROP TABLE "client";
-
--- DropTable
-DROP TABLE "client_bank";
-
 -- CreateTable
 CREATE TABLE "clients" (
     "id" TEXT NOT NULL,
@@ -44,9 +28,6 @@ CREATE TABLE "client_bank" (
 
     CONSTRAINT "client_bank_pkey" PRIMARY KEY ("id")
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "clients_email_key" ON "clients"("email");
 
 -- AddForeignKey
 ALTER TABLE "client_bank" ADD CONSTRAINT "client_bank_client_id_fkey" FOREIGN KEY ("client_id") REFERENCES "clients"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
